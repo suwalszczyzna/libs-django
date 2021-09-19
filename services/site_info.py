@@ -1,11 +1,11 @@
 import re
 import urllib.request
 from dataclasses import dataclass
-from typing import Optional
 from urllib.error import URLError
 
-from bs4 import BeautifulSoup
 import requests
+from requests.exceptions import Timeout, ConnectionError
+from bs4 import BeautifulSoup
 from rest_framework.exceptions import NotFound
 
 
@@ -30,7 +30,7 @@ class FavIconGrabber:
         except IndexError:
             return 0
 
-    def get_icon(self, min_icon_size: int):
+    def get_icon(self, min_icon_size: int) -> str:
         for item in self.get_icons_from_api():
             if 'sizes' in item:
                 if self.get_size_number(item.get('sizes')) >= min_icon_size:
@@ -39,12 +39,14 @@ class FavIconGrabber:
                 return item.get('src')
 
     def get_icons_from_api(self) -> list:
-        r = requests.get(self.api_url + self.base_url)
-        print(r.status_code)
-        if r.status_code == 200:
-            return r.json().get('icons')
-        else:
-            raise NotFound(detail='Incorrect url')
+        try:
+            r = requests.get(self.api_url + self.base_url)
+            print(r.status_code)
+            if r.status_code == 200:
+                return r.json().get('icons')
+            return []
+        except (ConnectionError, Timeout):
+            return []
 
 
 @dataclass
@@ -58,7 +60,6 @@ class SiteInfoService:
     def __init__(self, url: str):
         self.url = url
         self.page = self.get_page()
-        self.favicon_grabber = FavIconGrabber(self.url)
 
     def get_page(self) -> BeautifulSoup:
         try:
