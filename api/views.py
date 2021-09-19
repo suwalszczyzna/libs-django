@@ -34,7 +34,7 @@ def site_favicon(request):
 
     try:
         data = {
-            "icon": favicon_grabber.get_icon_bigger_than(min_icon_size)
+            "icon": favicon_grabber.get_icon(min_icon_size)
         }
         return Response(data=data, status=status.HTTP_200_OK)
     except NotFound as e:

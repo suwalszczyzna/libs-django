@@ -30,15 +30,15 @@ class FavIconGrabber:
         except IndexError:
             return 0
 
-    def get_icon_bigger_than(self, size: int):
-        for item in self.get_icons():
+    def get_icon(self, min_icon_size: int):
+        for item in self.get_icons_from_api():
             if 'sizes' in item:
-                if self.get_size_number(item.get('sizes')) >= size:
+                if self.get_size_number(item.get('sizes')) >= min_icon_size:
                     return item.get('src')
             else:
                 return item.get('src')
 
-    def get_icons(self) -> list:
+    def get_icons_from_api(self) -> list:
         r = requests.get(self.api_url + self.base_url)
         print(r.status_code)
         if r.status_code == 200:
