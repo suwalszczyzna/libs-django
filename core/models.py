@@ -8,7 +8,7 @@ def generate_nanoid():
 
 
 class NanoIdModel(models.Model):
-    id = models.CharField(primary_key=True, max_length=30, default=generate_nanoid)
+    id = models.CharField(primary_key=True, max_length=30, default=generate_nanoid, editable=False)
 
     class Meta:
         abstract = True
