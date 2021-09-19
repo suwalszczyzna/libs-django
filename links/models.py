@@ -14,6 +14,7 @@ class Link(NanoIdModel, TimeStampModel):
     url = models.CharField(max_length=255)
     faviconUrl = models.CharField(max_length=255, null=True, blank=True)
     tags = models.ManyToManyField(Tag)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
