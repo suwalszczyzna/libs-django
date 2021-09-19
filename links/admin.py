@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Link, Tag
+
+admin.site.register(Tag)
+admin.site.register(Link)
