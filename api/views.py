@@ -6,6 +6,7 @@ from rest_framework.response import Response
 
 from links.models import Tag, Link
 from services.site_info import SiteInfoService, FavIconGrabber, SiteInfoResponse
+from .pagination import CursorSetPagination
 from .serializers import TagSerializer, LinkSerializer
 
 
@@ -49,6 +50,7 @@ class TagList(viewsets.ModelViewSet):
 
 class LinkList(viewsets.ModelViewSet):
     serializer_class = LinkSerializer
+    pagination_class = CursorSetPagination
 
     def get_queryset(self):
         queryset = Link.objects.published()
