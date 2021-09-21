@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'localhost:3000',
-    '127.0.0.1:3000',
-    'daemon-libs.netlify.app',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://daemon-libs.netlify.app',
 ]
