@@ -13,7 +13,7 @@ class LinkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Link
-        fields = ['id', 'title', 'url', 'faviconUrl', 'tags']
+        fields = ['id', 'title', 'url', 'faviconUrl', 'tags', 'created']
 
     def create(self, validated_data):
         tags_data = validated_data.pop('tags') or []
