@@ -102,3 +102,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+FAVICON_GRABBER_URL = 'https://favicongrabber.com/api/grab/'

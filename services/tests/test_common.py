@@ -1,4 +1,4 @@
-from services.site_info import get_base_url
+from services.common import get_base_url
 
 
 class TestCommonFunctions:

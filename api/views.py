@@ -5,7 +5,8 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 
 from links.models import Tag, Link
-from services.site_info import SiteInfoService, FavIconGrabber, SiteInfoResponse
+from services.favicon_grabber_service import FavIconGrabber
+from services.site_info_service import SiteInfoResponse, SiteInfoService
 from .pagination import CursorSetPagination
 from .serializers import TagSerializer, LinkSerializer
 
